@@ -1,6 +1,6 @@
 <template>
-  <div class="col-4">
-    <q-card @click="info">
+  <div class="col-4 hov">
+    <q-card @click="info" class="hov2">
       <img src="https://cdn.quasar.dev/img/mountains.jpg" />
 
       <q-card-section>
@@ -42,3 +42,16 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+.hov {
+  &:hover {
+    cursor: pointer;
+  }
+}
+.hov2 {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+}
+</style>
