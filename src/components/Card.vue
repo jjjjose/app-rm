@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'Card',
   beforeRouteUpdate(to, from, next) {
@@ -48,8 +49,11 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['oneCharacter', 'randomCharacter']),
     // enviando la informacion unitaria del personaje
     info() {
+      this.oneCharacter(this.characterId)
+      this.randomCharacter()
       this.$router.push(`/character/${this.characterId}`)
     }
   }

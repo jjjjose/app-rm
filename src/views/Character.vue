@@ -1,6 +1,8 @@
 <template>
   <q-page class="q-mt-lg">
-    <div class="text-h3 text-weight-bold q-my-lg">Nombre</div>
+    <div v-if="character != null" class="text-h3 text-weight-bold q-my-lg">
+      {{ character.name }}
+    </div>
     <div
       v-if="character != null"
       class="row q-col-gutter-x-lg q-col-gutter-y-lg"
@@ -36,8 +38,12 @@
     <div class="q-mt-lg q-mb-md text-h5 text-weight-bold">
       Episodios donde apareció
     </div>
-    <div class="row q-gutter-lg" v-if="epi != null">
-      <div class="col-12 col-sm-3 epi" v-for="(ep, index) in epi" :key="index">
+    <div class="row q-gutter-lg" v-if="episode != null">
+      <div
+        class="col-12 col-sm-3 epi"
+        v-for="(ep, index) in episode"
+        :key="index"
+      >
         <q-card>
           <q-card-section>
             <div class="text-weight-bold">{{ ep.nombre }}</div>
@@ -51,7 +57,7 @@
     </div>
     <div class="row q-col-gutter-xl">
       <Card
-        v-for="inter in interesantes"
+        v-for="inter in threeRandom"
         :key="inter.id"
         :characterId="inter.id"
         :imagen="inter.image"
@@ -65,79 +71,26 @@
 
 <script>
 import Card from '@/components/Card.vue'
-
+import { mapActions, mapState } from 'vuex'
 export default {
   name: 'character',
   created() {
     this.oneCharacter(this.$route.params.id)
     this.randomCharacter()
-    console.log('nuevo')
   },
   data: () => ({
-    character: null,
-    epi: null,
-    interesantes: null
+    // character: null,
+    // epi: null,
+    // interesantes: null
   }),
   components: {
     Card
   },
   methods: {
-    //   trayendo datos del personaje
-    async oneCharacter(id) {
-      await this.axios
-        .get(`https://rickandmortyapi.com/api/character/${id}`)
-        .then(res => {
-          this.character = res.data
-          //   console.log(res.data)
-          this.episodios()
-        })
-    },
-    // recuperando datos de los episodios donde salio el personaje
-    async episodios() {
-      let episode = this.character.episode
-      if (
-        episode.lenght === null ||
-        episode.lenght === '0' ||
-        episode.lenght === ''
-      ) {
-        // console.log(episode)
-        return
-      }
-      let ii = 0
-      this.epi = []
-
-      for (let i = 1; i <= episode.length; i++) {
-        await this.axios.get(episode[ii]).then(res => {
-          this.epi.push({
-            nombre: res.data.name,
-            fecha: res.data.air_date
-          })
-        })
-        ii++
-      }
-    },
-    randomCharacter() {
-      let one, two, three, number
-      one = this.genRandom()
-      two = this.genRandom()
-      three = this.genRandom()
-      //   verificando si el numero es 0
-      number = `${one === 0 ? 1 : one},${
-        two === 0 || two === one ? two + 1 : two
-      },${three === 0 || three === one || three === two ? three + 2 : three}`
-      console.log(number)
-      this.axios
-        .get(`https://rickandmortyapi.com/api/character/${number}`)
-        .then(res => {
-          this.interesantes = res.data
-        })
-    }
+    ...mapActions(['oneCharacter', 'randomCharacter'])
   },
   computed: {
-    //   generador de numero rando del 0 al 100
-    genRandom() {
-      return () => Math.floor(Math.random() * 100)
-    }
+    ...mapState(['character', 'episode', 'threeRandom'])
   }
 }
 </script>

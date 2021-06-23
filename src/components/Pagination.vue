@@ -16,10 +16,10 @@ import { mapState, mapActions } from 'vuex'
 export default {
   name: 'pagination',
   //   actualizando ruta
-  beforeRouteUpdate(to, from, next) {
-    this.current = to.params.id
-    next()
-  },
+  //   beforeRouteUpdate(to, from, next) {
+  //     this.current = to.params.id
+  //     next()
+  //   },
   data: () => ({
     current: 1,
     totalPages: null
