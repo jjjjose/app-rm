@@ -11,10 +11,15 @@ const routes = [
       {
         path: '',
         name: 'index',
+        redirect: 'page/1'
+      },
+      {
+        path: '/page/:id',
+        name: 'page',
         component: () => import('@/views/Index')
       },
       {
-        path: 'character',
+        path: '/character/:id',
         name: 'character',
         component: () => import('@/views/Character')
       }
