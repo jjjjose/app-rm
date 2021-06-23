@@ -1,7 +1,7 @@
 <template>
   <div class="col-12 col-sm-6 col-md-4 hov">
     <q-card @click="info" class="hov2">
-      <img src="https://cdn.quasar.dev/img/mountains.jpg" />
+      <img :src="imagen" />
 
       <q-card-section>
         <div class="text-h6">{{ nombre }}</div>
@@ -21,7 +21,19 @@
 <script>
 export default {
   name: 'Card',
+  beforeRouteUpdate(to, from, next) {
+    this.characterId = to.params.id
+    next()
+  },
   props: {
+    characterId: {
+      type: Number,
+      default: 0
+    },
+    imagen: {
+      type: String,
+      default: 'https://cdn.quasar.dev/img/mountains.jpg'
+    },
     nombre: {
       type: String,
       default: 'Mi nombre'
@@ -36,8 +48,9 @@ export default {
     }
   },
   methods: {
+    // enviando la informacion unitaria del personaje
     info() {
-      this.$router.push('/character')
+      this.$router.push(`/character/${this.characterId}`)
     }
   }
 }
