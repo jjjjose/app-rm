@@ -2,8 +2,8 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar class="q-px-xl">
-        <q-toolbar-title>
-         Rick and Morty
+        <q-toolbar-title class="title" @click="inicio">
+          Rick and Morty
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
@@ -15,13 +15,23 @@
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'MainLayout',
+  methods: {
+    inicio() {
+      this.$router.push('/')
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 body,
 html {
   min-height: 100%;
+}
+.title {
+  cursor: pointer;
 }
 #main {
   width: 100%;
