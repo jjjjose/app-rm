@@ -10,6 +10,7 @@ const routes = [
     children: [
       {
         path: '',
+        name: 'index',
         component: () => import('@/views/Index')
       }
     ]
