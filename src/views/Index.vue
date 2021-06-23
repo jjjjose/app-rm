@@ -8,12 +8,14 @@
       <card />
       <card />
     </div>
+    <pagination />
   </q-page>
 </template>
 
 <script>
 import Filtro from '@/components/Filtro'
 import Card from '@/components/Card.vue'
+import Pagination from '../components/Pagination.vue'
 export default {
   name: 'Index',
   data: () => ({
@@ -21,7 +23,8 @@ export default {
   }),
   components: {
     Filtro,
-    Card
+    Card,
+    Pagination
   }
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="col-4 hov">
+  <div class="col -12 col-sm-4 hov">
     <q-card @click="info" class="hov2">
       <img src="https://cdn.quasar.dev/img/mountains.jpg" />
 
@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     info() {
-      console.log('holi')
+      this.$router.push('/character')
     }
   }
 }
