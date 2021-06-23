@@ -1,8 +1,15 @@
 <template>
-  <div class=" flex items-center q-py-lg">
-    Filtrar por:
-    <div class="q-ml-lg q-gutter-md row">
+  <div
+    class="row flex items-center q-py-lg q-col-gutter-x-lg  q-col-gutter-y-lg"
+  >
+    <div class="col-12 col-md-1">
+      Filtrar por:
+    </div>
+    <div
+      class="col-12 col-md-6 q-ml-lg row q-col-gutter-x-lg  q-col-gutter-y-lg"
+    >
       <q-select
+        class="col-12"
         outlined
         v-model="model"
         :options="options"
@@ -10,6 +17,7 @@
         style="width: 250px"
       />
       <q-select
+        class="col-12"
         outlined
         v-model="model"
         :options="options"

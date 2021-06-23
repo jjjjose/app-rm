@@ -2,7 +2,7 @@
   <q-page class="q-mt-lg">
     <q-input outlined v-model="search" label="Buscar" />
     <filtro />
-    <div class="row q-col-gutter-xl">
+    <div class="row q-col-gutter-x-lg q-col-gutter-y-lg">
       <card />
       <card />
       <card />

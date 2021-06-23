@@ -1,5 +1,5 @@
 <template>
-  <div class="col -12 col-sm-4 hov">
+  <div class="col-12 col-sm-6 col-md-4 hov">
     <q-card @click="info" class="hov2">
       <img src="https://cdn.quasar.dev/img/mountains.jpg" />
 
