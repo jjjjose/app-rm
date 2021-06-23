@@ -1,6 +1,9 @@
 {
   "name": "app-rm",
   "version": "0.1.0",
+  "description": "app-rm",
+  "productName": "app de rick and morty",
+  "author": "jjjose <jjjjoseignacio@gmail.com>",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
