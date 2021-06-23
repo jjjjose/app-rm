@@ -2,12 +2,32 @@
   <q-page class="q-mt-lg">
     <div class="text-h3 text-weight-bold q-my-lg">Nombre</div>
     <div class="row q-col-gutter-x-lg q-col-gutter-y-lg">
-      <img class="col-12 col-sm-4 " src="https://cdn.quasar.dev/img/mountains.jpg" />
+      <img class="col-12 col-sm-4 " :src="character.image" />
       <div class="col-12 col-sm-4 column justify-center q-col-gutter-y-lg">
-        <div class="text-h6 text-weight-bold">Estatus:</div>
-        <div class="text-h6 text-weight-bold">Gender:</div>
-        <div class="text-h6 text-weight-bold">Origin:</div>
-        <div class="text-h6 text-weight-bold">Species:</div>
+        <div class="text-h6 flex text-weight-bold">
+          Estatus:
+          <div class="text-h6 text-weight-regular q-pl-sm">
+            {{ character.status }}
+          </div>
+        </div>
+        <div class="text-h6 flex text-weight-bold">
+          Gender:
+          <div class="text-h6 text-weight-regular q-pl-sm">
+            {{ character.gender }}
+          </div>
+        </div>
+        <div class="text-h6 flex text-weight-bold">
+          Origin:
+          <div class="text-h6 text-weight-regular q-pl-sm">
+            {{ character.origin.name }}
+          </div>
+        </div>
+        <div class="text-h6 flex text-weight-bold">
+          Species:
+          <div class="text-h6 text-weight-regular q-pl-sm">
+            {{ character.species }}
+          </div>
+        </div>
       </div>
     </div>
     <div class="q-mt-lg q-mb-md text-h5 text-weight-bold">
@@ -34,9 +54,28 @@
 
 <script>
 import Card from '@/components/Card.vue'
+
 export default {
+  name: 'character',
+  mounted() {
+    this.oneCharacter(this.$route.params.id)
+  },
+  data: () => ({
+    character: null
+  }),
   components: {
     Card
+  },
+  methods: {
+    //   trayendo datos del personaje
+    oneCharacter(id) {
+      this.axios
+        .get(`https://rickandmortyapi.com/api/character/${id}`)
+        .then(res => {
+          this.character = res.data
+          console.log(res.data)
+        })
+    }
   }
 }
 </script>
