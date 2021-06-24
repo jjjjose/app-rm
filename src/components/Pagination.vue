@@ -19,29 +19,35 @@ export default {
     //   añadiendo el estado de la pagina actual o solicitada
     this.current = Number(this.$route.params.idpage)
   },
-  //   actualizando ruta
-  //   beforeRouteUpdate(to, from, next) {
-  //     this.current = to.params.id
-  //     next()
-  //   },
+  // actualizando ruta
+  beforeRouteUpdate(to, from, next) {
+    this.current = to.params.id
+    next()
+  },
   data: () => ({
-    current: null,
-    totalPages: null
+    current: null
   }),
   methods: {
     ...mapActions(['bringData']),
     //   recibiendo el click para solicitar la nueva página
     paginando(e) {
+      // si esta en la misma pagina actual no hacer nada
       if (this.current === Number(this.$route.params.idpage)) {
         return
       }
-      this.bringData(e)
+      //   si es distinta solicitar la siguiente pagina
+      this.bringData({
+        page: e,
+        name: this.name,
+        status: this.status,
+        gender: this.gender
+      })
       this.$router.push(`/page/${e}`).catch(() => {})
     }
   },
   computed: {
     //   leyendo el total de pagina segun la api
-    ...mapState(['pages'])
+    ...mapState(['pages', 'name', 'status', 'gender'])
   }
 }
 </script>
