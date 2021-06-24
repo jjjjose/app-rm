@@ -2,18 +2,20 @@
   <q-page class="q-mt-lg">
     <q-input outlined v-model="search" label="Buscar" />
     <filtro />
-    <div class="row q-col-gutter-x-lg q-col-gutter-y-lg">
-      <card
-        v-for="(dat, index) in data"
-        :key="index"
-        :characterId="dat.id"
-        :imagen="dat.image"
-        :nombre="dat.name"
-        :estado="dat.status"
-        :origen="dat.origin.name"
-      />
+    <div>
+      <div class="row q-col-gutter-x-lg q-col-gutter-y-lg">
+        <card
+          v-for="(dat, index) in data"
+          :key="index"
+          :characterId="dat.id"
+          :imagen="dat.image"
+          :nombre="dat.name"
+          :estado="dat.status"
+          :origen="dat.origin.name"
+        />
+      </div>
+      <pagination />
     </div>
-    <pagination />
   </q-page>
 </template>
 
@@ -26,7 +28,7 @@ export default {
   name: 'Index',
   created() {
     // trayendo datos de la api
-    this.bringData(this.$route.params.id)
+    this.bringData(this.$route.params.idpage)
   },
   data: () => ({
     search: null

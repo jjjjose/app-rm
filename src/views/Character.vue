@@ -75,7 +75,7 @@ import { mapActions, mapState } from 'vuex'
 export default {
   name: 'character',
   created() {
-    this.oneCharacter(this.$route.params.id)
+    this.oneCharacter(this.$route.params.idchar)
     this.randomCharacter()
   },
   data: () => ({

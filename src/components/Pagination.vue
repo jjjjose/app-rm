@@ -15,21 +15,28 @@
 import { mapState, mapActions } from 'vuex'
 export default {
   name: 'pagination',
+  created() {
+    //   añadiendo el estado de la pagina actual o solicitada
+    this.current = Number(this.$route.params.idpage)
+  },
   //   actualizando ruta
   //   beforeRouteUpdate(to, from, next) {
   //     this.current = to.params.id
   //     next()
   //   },
   data: () => ({
-    current: 1,
+    current: null,
     totalPages: null
   }),
   methods: {
     ...mapActions(['bringData']),
     //   recibiendo el click para solicitar la nueva página
     paginando(e) {
+      if (this.current === Number(this.$route.params.idpage)) {
+        return
+      }
       this.bringData(e)
-      this.$router.push({ path: `/page/${e}` })
+      this.$router.push(`/page/${e}`).catch(() => {})
     }
   },
   computed: {

@@ -14,12 +14,12 @@ const routes = [
         redirect: 'page/1'
       },
       {
-        path: '/page/:id',
+        path: '/page/:idpage',
         name: 'page',
         component: () => import('@/views/Index')
       },
       {
-        path: '/character/:id',
+        path: '/character/:idchar',
         name: 'character',
         component: () => import('@/views/Character')
       }

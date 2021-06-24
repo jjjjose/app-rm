@@ -19,8 +19,8 @@
       <q-select
         class="col-12"
         outlined
-        v-model="selectOrigin"
-        :options="origin"
+        v-model="selectGender"
+        :options="gender"
         label="Origin"
         style="width: 250px"
       />
@@ -31,15 +31,13 @@
 <style></style>
 
 <script>
-const status = ['alive', 'dead', 'unknown']
-const origin = ['']
 export default {
   name: 'Filtro',
   data: () => ({
     selectStatus: null,
-    selectOrigin: null,
-    status,
-    origin
+    selectGender: null,
+    status: ['alive', 'dead', 'unknown'],
+    gender: ['female', 'male', 'genderless', 'unknown']
   })
 }
 </script>
