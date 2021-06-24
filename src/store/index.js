@@ -61,7 +61,7 @@ export default new Vuex.Store({
       axios
         .get(url)
         .then(res => {
-          console.log(res)
+          // console.log(res)
           res.data.search = {
             name,
             status,
