@@ -15,14 +15,16 @@
         :options="status"
         label="Status"
         style="width: 250px"
+        @input="Search1"
       />
       <q-select
         class="col-12"
         outlined
         v-model="selectGender"
         :options="gender"
-        label="Origin"
+        label="Gender"
         style="width: 250px"
+        @input="Search2"
       />
     </div>
   </div>
@@ -31,6 +33,13 @@
 <style></style>
 
 <script>
+import { mapActions, mapState } from 'vuex'
+const data = {
+  page: 1,
+  name: null,
+  status: null,
+  gender: null
+}
 export default {
   name: 'Filtro',
   data: () => ({
@@ -38,6 +47,38 @@ export default {
     selectGender: null,
     status: ['alive', 'dead', 'unknown'],
     gender: ['female', 'male', 'genderless', 'unknown']
-  })
+  }),
+  methods: {
+    ...mapActions(['bringData']),
+    Search1() {
+      data.name = this.name
+      if (this.selectGender === null || this.selectGender === '') {
+        data.status = this.selectStatus
+        // console.log(data)
+        this.bringData(data)
+        return
+      }
+      data.status = this.selectStatus
+      data.gender = this.selectGender
+      // console.log(data)
+      this.bringData(data)
+    },
+    Search2() {
+      data.name = this.name
+      if (this.selectStatus === null || this.selectStatus === '') {
+        data.gender = this.selectGender
+        // console.log(data)
+        this.bringData(data)
+        return
+      }
+      data.status = this.selectStatus
+      data.gender = this.selectGender
+      // console.log(data)
+      this.bringData(data)
+    }
+  },
+  computed: {
+    ...mapState(['name'])
+  }
 }
 </script>
