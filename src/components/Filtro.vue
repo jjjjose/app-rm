@@ -11,16 +11,16 @@
       <q-select
         class="col-12"
         outlined
-        v-model="model"
-        :options="options"
+        v-model="selectStatus"
+        :options="status"
         label="Status"
         style="width: 250px"
       />
       <q-select
         class="col-12"
         outlined
-        v-model="model"
-        :options="options"
+        v-model="selectOrigin"
+        :options="origin"
         label="Origin"
         style="width: 250px"
       />
@@ -31,12 +31,15 @@
 <style></style>
 
 <script>
-const options = ['Google', 'Facebook', 'Twitter', 'Apple', 'Oracle']
+const status = ['alive', 'dead', 'unknown']
+const origin = ['']
 export default {
   name: 'Filtro',
   data: () => ({
-    model: null,
-    options
+    selectStatus: null,
+    selectOrigin: null,
+    status,
+    origin
   })
 }
 </script>
