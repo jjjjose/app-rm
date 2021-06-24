@@ -10,7 +10,11 @@ export default new Vuex.Store({
     data: null,
     character: null,
     episode: null,
-    threeRandom: null
+    threeRandom: null,
+    // parametros apra relaizar una busqueda
+    name: null,
+    status: null,
+    gender: null
   },
   mutations: {
     // actualizando los datos recibidos de la api
@@ -18,6 +22,12 @@ export default new Vuex.Store({
       state.dataRes = data.results
       state.data = data.results
       state.pages = data.info.pages
+      state.name = data.search.name
+      state.status = data.search.status
+      state.gender = data.search.gender
+    },
+    limpiar(state) {
+      state.data = null
     },
     oneCharacter(state, { character, episode }) {
       state.character = character
@@ -29,11 +39,39 @@ export default new Vuex.Store({
   },
   actions: {
     // Trayendo datos de la API
-    bringData({ commit }, page) {
+    bringData({ commit }, { page, name, status, gender }) {
+      commit('limpiar')
+      let url = 'https://rickandmortyapi.com/api/character/?page='
+      let n, s, g
+      url = url + page
+      // creacion de la url segun solicitud
+      if (name) {
+        n = `&name=${name}`
+        url = url + n
+      }
+      if (status) {
+        s = `&status=${status}`
+        url = url + s
+      }
+      if (gender) {
+        g = `&gender=${gender}`
+        url = url + g
+      }
+
       axios
-        .get(`https://rickandmortyapi.com/api/character/?page=${page}`)
+        .get(url)
         .then(res => {
+          console.log(res)
+          res.data.search = {
+            name,
+            status,
+            gender
+          }
           commit('bringData', res.data)
+        })
+        .catch(error => {
+          console.log('opcion invalida')
+          // console.log(error.toJSON())
         })
     },
     // trayendo datos de un solo personaje y en los episodios que salio
