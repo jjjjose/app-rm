@@ -1,6 +1,6 @@
 <template>
   <q-page class="q-mt-lg">
-    <q-input outlined v-model="search" label="Buscar" />
+    <q-input outlined v-model="search" label="Buscar" @input="Searching" />
     <filtro />
     <div>
       <div class="row q-col-gutter-x-lg q-col-gutter-y-lg">
@@ -28,7 +28,7 @@ export default {
   name: 'Index',
   created() {
     // trayendo datos de la api
-    this.bringData(this.$route.params.idpage)
+    this.bringData({ page: 1 })
   },
   data: () => ({
     search: null
@@ -39,7 +39,10 @@ export default {
     Pagination
   },
   methods: {
-    ...mapActions(['bringData'])
+    ...mapActions(['bringData']),
+    Searching() {
+      this.bringData({ name: this.search })
+    }
   },
   computed: {
     ...mapState(['data'])
