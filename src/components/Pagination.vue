@@ -1,6 +1,7 @@
 <template>
   <div class="q-pa-lg flex flex-center">
     <q-pagination
+      v-if="pages != 1"
       v-model="current"
       color="purple"
       :max="Number(pages)"

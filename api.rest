@@ -15,5 +15,5 @@ GET https://rickandmortyapi.com/api/character/1,183,3
 ###
 GET https://rickandmortyapi.com/api/character/?name=Toxi
 
-###
-GET https://rickandmortyapi.com/api/character/?origin:{name:"Ea"}
+####
+GET https://rickandmortyapi.com/api/character/?page=1&name=rick&status=alive

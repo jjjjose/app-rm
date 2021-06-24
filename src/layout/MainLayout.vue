@@ -15,11 +15,15 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'MainLayout',
   methods: {
+    ...mapActions(['bringData']),
     inicio() {
-      this.$router.push('/')
+      this.bringData({ page: 1 })
+      this.$router.push('/').catch(() => {})
     }
   }
 }

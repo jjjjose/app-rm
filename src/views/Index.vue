@@ -3,6 +3,9 @@
     <q-input outlined v-model="search" label="Buscar" @input="Searching" />
     <filtro />
     <div>
+      <div v-if="!data" class="flex items-center justify-center text-h6">
+        Sin Resultados...
+      </div>
       <div class="row q-col-gutter-x-lg q-col-gutter-y-lg">
         <card
           v-for="(dat, index) in data"
@@ -41,7 +44,7 @@ export default {
   methods: {
     ...mapActions(['bringData']),
     Searching() {
-      this.bringData({ name: this.search })
+      this.bringData({ page: 1, name: this.search })
     }
   },
   computed: {
