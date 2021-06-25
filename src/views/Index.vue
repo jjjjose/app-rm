@@ -31,25 +31,25 @@ export default {
   name: 'Index',
   created() {
     // trayendo datos de la api
-    this.bringData({ page: 1 })
+    this.bringData({ page: this.$route.params.idpage })
   },
   data: () => ({
-    search: null
+    search: null,
   }),
   components: {
     Filtro,
     Card,
-    Pagination
+    Pagination,
   },
   methods: {
     ...mapActions(['bringData']),
     Searching() {
       this.bringData({ page: 1, name: this.search })
-    }
+    },
   },
   computed: {
-    ...mapState(['data'])
-  }
+    ...mapState(['data']),
+  },
 }
 
 Card
